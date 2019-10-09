@@ -9,7 +9,7 @@
 </template>
 <script>
 import axios from 'axios'
-import mock from '@/mock/mock.js'
+import mock from '@/mock/index.js'
 export default {
     name:'Home',
     methods:{

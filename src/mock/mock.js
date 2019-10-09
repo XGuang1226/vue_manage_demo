@@ -1,5 +1,11 @@
 import Mock from 'mockjs'
 
+Mock.mock('http://localhost:8080/login',{
+    data:{
+        'token':'324234234235435233212'
+    }
+    //其他数据
+});
 Mock.mock('http://localhost:8080/user',{
     'name':'@name',
     'email':'@email',
@@ -11,4 +17,4 @@ Mock.mock('http://localhost:8080/menu',{
     'name':'menu',
     'order|10-20':12
     //其他数据
-})
+});
