@@ -2,10 +2,11 @@
 
 import axios from './axios'
 //单独导出
-export const login=()=>{
+export const login=data=>{
     return axios({
         url:'/login',
-        method:'get'
+        method:'post',
+        data
     })
 }
 export const getUser=()=>{
