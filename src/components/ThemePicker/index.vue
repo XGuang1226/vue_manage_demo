@@ -57,6 +57,9 @@ export default {
         if (typeof innerText !== 'string') return
         style.innerText = this.updateStyle(innerText, originalCluster, themeCluster)
       })
+
+      // 响应外部操作
+      this.$emit('onThemeChange', val, oldVal)
       this.$message({
         message: '换肤成功',
         type: 'success'

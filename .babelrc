@@ -1,0 +1,6 @@
+{
+    "presets": [
+        ["es2015", { "modules": false }]
+    ],
+    "plugins": ["transform-object-rest-spread"] //不能解析es6语法关键解决
+}

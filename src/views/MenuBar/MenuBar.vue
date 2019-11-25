@@ -1,12 +1,12 @@
 <template>
 	<div class="menu-bar-container">
     <!-- logo -->
-    <div class="logo" :class="$store.state.collapse?'menu-bar-collapse-width':'menu-bar-width'">
-        <img :src="this.logo" /> <div>{{$store.state.collapse?'':sysName}}</div>
+    <div class="logo" :style="{'background-color':themeColor}" :class="collapse?'menu-bar-collapse-width':'menu-bar-width'">
+        <img src="@/assets/logo.png"/> <div>{{collapse?'':appName}}</div>
     </div>
     <!-- 导航菜单 -->
-    <el-menu default-active="1-1" :class="$store.state.collapse?'menu-bar-collapse-width':'menu-bar-width'"
-      :collapse="$store.state.collapse" @open="handleopen" @close="handleclose" @select="handleselect">
+    <el-menu default-active="1-1" :class="collapse?'menu-bar-collapse-width':'menu-bar-width'"
+      :collapse="collapse" @open="handleopen" @close="handleclose" @select="handleselect">
       <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -24,24 +24,15 @@
           <span slot="title">{{$t("sys.sysMonitor")}}</span>
         </template>
       </el-submenu>
-      <el-menu-item index="3" disabled>
-        <i class="el-icon-document"></i>
-        <span slot="title">{{$t("sys.nav3")}}</span>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <i class="el-icon-setting"></i>
-        <span slot="title">{{$t("sys.nv4")}}</span>
-      </el-menu-item>
     </el-menu>
 	</div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      sysName: "",
-      logo: "",
     };
   },
   methods: {
@@ -55,9 +46,12 @@ export default {
       console.log('handleselect');
     }
   },
-  mounted() {
-    this.sysName = "I like Kitty";
-    this.logo = require("@/assets/logo.png");
+  computed:{
+    ...mapState({
+      appName: state=>state.app.appName,
+      themeColor: state=>state.app.themeColor,
+      collapse: state=>state.app.collapse
+    })
   }
 };
 </script>

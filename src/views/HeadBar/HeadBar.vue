@@ -1,12 +1,12 @@
 <template> 
-  <div class="container" :class="$store.state.collapse?'menu-bar-collapse-width':'menu-bar-width'">
+  <div class="container" :style="{'background':themeColor}" :class="$store.state.app.collapse?'menu-bar-collapse-width':'menu-bar-width'">
     <!-- 导航收缩 -->
-    <span class="hamburger-container">
-      <Hamburger :toggleClick="collapse" :isActive="$store.state.collapse"></Hamburger>
+    <span class="hamburger-container" :style="{'background':themeColor}">
+      <Hamburger :onClick="onCollapse" :isActive="collapse"></Hamburger>
     </span>
     <!-- 导航菜单 -->
     <span class="nav-bar">
-      <el-menu :default-active="activeIndex" class="el-menu-demo" background-color="#545c64"
+      <el-menu :default-active="activeIndex" class="el-menu-demo" :style="{'background-color':themeColor}"
           text-color="#fff" active-text-color="#ffd04b" mode="horizontal" @select="selectNavBar()">
         <el-menu-item index="1" @click="$router.push('/')">{{$t("common.home")}}</el-menu-item>
         <el-menu-item index="2">{{$t("common.doc")}}</el-menu-item>
@@ -15,7 +15,7 @@
     </span>
     <span class="tool-bar">
       <!-- 主题切换 -->
-      <ThemePicker class="theme-picker"></ThemePicker>
+      <ThemePicker class="theme-picker" @onThemeChange="onThemeChange"></ThemePicker>
       <!-- 语言切换 -->
       <LangSelector class="lang-selector"></LangSelector>   
       <!-- 用户信息 -->
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import mock from "@/mock/index.js";
 import Hamburger from "@/components/Hamburger"
 import ThemePicker from "@/components/ThemePicker"
@@ -44,7 +45,7 @@ export default {
   },
   data() {
     return {
-      username: "Alan001",
+      username: "Louis",
       userAvatar: "",
       activeIndex: '1'
     };
@@ -53,11 +54,15 @@ export default {
     selectNavBar(key, keyPath) {
       console.log(key, keyPath)
     },
-    //折叠导航栏
-    collapse: function() {
-      this.$store.commit('collapse');
+    // 折叠导航栏
+    onCollapse: function() {
+      this.$store.commit('onCollapse');
     },
-    //退出登录
+    // 切换主题
+    onThemeChange: function(themeColor, oldThemeColor) {
+      this.$store.dispatch('onThemeChange', {themeColor, oldThemeColor});
+    },
+    // 退出登录
     logout: function() {
       var _this = this;
       this.$confirm("确认退出吗?", "提示", {
@@ -72,12 +77,18 @@ export default {
     }
   },
   mounted() {
-    this.sysName = "* * 科技";
+    this.sysName = "I like Kitty";
     var user = sessionStorage.getItem("user");
     if (user) {
       this.userName = user;
       this.userAvatar = require("@/assets/user.png");
     }
+  },
+  computed:{
+    ...mapState({
+      themeColor: state=>state.app.themeColor,
+      collapse: state=>state.app.collapse
+    })
   }
 };
 </script>
@@ -89,17 +100,15 @@ export default {
   right: 0px;
   height: 60px;
   line-height: 60px;
-  background: #545c64;
   .hamburger-container {
     width: 40px;
     float: left;
-    border-color: rgba(80, 124, 133, 0.747);
+    border-color: rgba(238, 241, 241, 0.747);
     border-left-width: 1px;
     border-left-style: solid;
     border-right-width: 1px;
     border-right-style: solid;
     color: white;
-    background: #545c64;
   }
   .nav-bar {
     margin-left: auto;
