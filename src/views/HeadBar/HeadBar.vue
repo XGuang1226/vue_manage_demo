@@ -2,7 +2,7 @@
   <div class="container" :style="{'background':themeColor}" :class="$store.state.app.collapse?'menu-bar-collapse-width':'menu-bar-width'">
     <!-- 导航收缩 -->
     <span class="hamburger-container" :style="{'background':themeColor}">
-      <Hamburger :onClick="onCollapse" :isActive="collapse"></Hamburger>
+      <hamburger :onClick="onCollapse" :isActive="collapse"></hamburger>
     </span>
     <!-- 导航菜单 -->
     <span class="nav-bar">
@@ -15,9 +15,9 @@
     </span>
     <span class="tool-bar">
       <!-- 主题切换 -->
-      <ThemePicker class="theme-picker" @onThemeChange="onThemeChange"></ThemePicker>
+      <theme-picker class="theme-picker" @onThemeChange="onThemeChange"></theme-picker>
       <!-- 语言切换 -->
-      <LangSelector class="lang-selector"></LangSelector>   
+      <lang-selector class="lang-selector"></lang-selector>   
       <!-- 用户信息 -->
       <el-dropdown class="user-info-dropdown" trigger="hover">
         <span class="el-dropdown-link"><img :src="this.userAvatar" /> {{username}}</span>
@@ -33,7 +33,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import mock from "@/mock/index.js";
+import mock from "@/mock/index"
 import Hamburger from "@/components/Hamburger"
 import ThemePicker from "@/components/ThemePicker"
 import LangSelector from "@/components/LangSelector"
@@ -45,10 +45,10 @@ export default {
   },
   data() {
     return {
-      username: "Louis",
+      username: "Alan 001",
       userAvatar: "",
       activeIndex: '1'
-    };
+    }
   },
   methods: {
     selectNavBar(key, keyPath) {
@@ -56,32 +56,30 @@ export default {
     },
     // 折叠导航栏
     onCollapse: function() {
-      this.$store.commit('onCollapse');
+      this.$store.commit('onCollapse')
     },
     // 切换主题
     onThemeChange: function(themeColor, oldThemeColor) {
-      this.$store.dispatch('onThemeChange', {themeColor, oldThemeColor});
+      this.$store.dispatch('onThemeChange', {themeColor, oldThemeColor})
     },
     // 退出登录
     logout: function() {
-      var _this = this;
       this.$confirm("确认退出吗?", "提示", {
         type: "warning"
       })
       .then(() => {
-        sessionStorage.removeItem("user");
-        this.$router.push
-        ("/login");
+        sessionStorage.removeItem("user")
+        this.$router.push("/login")
       })
-      .catch(() => {});
+      .catch(() => {})
     }
   },
   mounted() {
-    this.sysName = "I like Kitty";
-    var user = sessionStorage.getItem("user");
+    this.sysName = "* * 科技"
+    var user = sessionStorage.getItem("user")
     if (user) {
-      this.userName = user;
-      this.userAvatar = require("@/assets/user.png");
+      this.userName = user
+      this.userAvatar = require("@/assets/user.png")
     }
   },
   computed:{
@@ -90,7 +88,7 @@ export default {
       collapse: state=>state.app.collapse
     })
   }
-};
+}
 </script>
 
 <style scoped lang="scss">

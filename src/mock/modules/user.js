@@ -1,8 +1,6 @@
-//用户相关的接口模拟
-
-export function getUser () {
-return {
-        // isOpen: false,
+// 获取用户信息
+export function getUser() {
+    return {
         url: 'http://localhost:8080/user',
         type: 'get',
         data: {
