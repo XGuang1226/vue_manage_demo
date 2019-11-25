@@ -3,12 +3,12 @@ import Router from 'vue-router'
 import Login from '@/views/Login'
 import NotFound from '@/views/404'
 import Home from '@/views/Home'
-import Main from '@/views/Main'
-import User from '@/views/User'
-import Menu from '@/views/Menu'
-
-
-
+import Intro from '@/views/Intro'
+import User from '@/views/SysMng/User'
+import Dept from '@/views/SysMng/Dept'
+import Role from '@/views/SysMng/Role'
+import Menu from '@/views/SysMng/Menu'
+import Log from '@/views/SysMng/Log'
 
 Vue.use(Router)
 
@@ -19,12 +19,14 @@ const router = new Router({
       name: '首页',
       component: Home,
       children: [
-        { path: '/main', component: Main, name: '系统介绍' },
+        { path: '', component: Intro, name: '系统介绍' },
         { path: '/user', component: User, name: '用户管理' },
-        { path: '/menu', component: Menu, name: '菜单管理' }
+        { path: '/dept', component: Dept, name: '机构管理' },
+        { path: '/role', component: Role, name: '角色管理' },
+        { path: '/menu', component: Menu, name: '菜单管理' },
+        { path: '/log', component: Log, name: '日志管理' }
       ]
     },
- 
     {
       path: '/login',
       name: '登录',
