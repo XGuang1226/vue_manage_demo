@@ -1,0 +1,33 @@
+{
+    "name": "gulp-nop",
+    "description": "No operation",
+    "version": "0.0.3",
+    "homepage": "https://github.com/hoho/gulp-nop",
+    "repository": "git://github.com/hoho/gulp-nop.git",
+    "author": "Marat Abdullin <dakota@brokenpipe.ru>",
+    "license": "MIT",
+    "main": "./index.js",
+    "keywords": [
+        "gulpplugin",
+        "nop",
+        "noop",
+        "nothing"
+    ],
+    "bugs": {
+        "url": "https://github.com/hoho/gulp-nop/issues"
+    },
+    "dependencies": {
+        "gulp-util": "~2.2.14",
+        "through": "~2.3.4"
+    },
+    "devDependencies": {
+        "mocha": "*",
+        "should": "*"
+    },
+    "scripts": {
+        "test": "mocha"
+    },
+    "engines": {
+        "node": ">=0.10"
+    }
+}

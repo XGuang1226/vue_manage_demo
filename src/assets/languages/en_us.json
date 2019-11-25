@@ -1,0 +1,22 @@
+{
+    "common": {
+        "home": "Home",
+        "login": "Login",
+        "exit": "Exit",
+        "myMsg": "My news",
+        "config": "Settings",
+        "doc": "Order management",
+        "msgCenter": "Message center"
+    },
+    "sys": {
+        "sysMng": "System menu",
+        "userMng": "User Manage",
+        "deptMng": "Dept Manage",
+        "roleMng": "Role Manage",
+        "menuMng": "Menu Manage",
+        "logMng": "Log Manage",
+        "sysMonitor": "Test menu",
+        "nv3": "Disable menu",
+        "nv4": "Other menu"
+    }
+}

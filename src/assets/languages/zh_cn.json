@@ -1,0 +1,22 @@
+{
+    "common": {
+        "home": "首页",
+        "login": "登录",
+        "exit": "退出",
+        "myMsg": "我的消息",
+        "config": "设置",
+        "doc": "订单管理",
+        "msgCenter": "消息中心"
+    },
+    "sys": {
+        "sysMng": "系统菜单",
+        "userMng": "用户管理",
+        "deptMng": "机构管理",
+        "roleMng": "角色管理",
+        "menuMng": "菜单管理",
+        "logMng": "日志管理",
+        "sysMonitor": "检测菜单",
+        "nv3": "禁用菜单",
+        "nv4": "其他菜单"
+    }
+}
