@@ -1,13 +1,13 @@
 <template> 
-  <div class="container">
-    <!-- 导航菜单隐藏显示切换 -->
-    <span class="collapse-switcher" @click.prevent="collapse">
-      <i class="el-icon-menu"></i>
+  <div class="container" :class="$store.state.collapse?'menu-bar-collapse-width':'menu-bar-width'">
+    <!-- 导航收缩 -->
+    <span class="hamburger-container">
+      <Hamburger :toggleClick="collapse" :isActive="$store.state.collapse"></Hamburger>
     </span>
     <!-- 导航菜单 -->
     <span class="nav-bar">
-      <el-menu :default-active="activeIndex" class="el-menu-demo" text-color="#fff"
-          active-text-color="#ffd04b" mode="horizontal" @select="selectNavBar()">
+      <el-menu :default-active="activeIndex" class="el-menu-demo" background-color="#545c64"
+          text-color="#fff" active-text-color="#ffd04b" mode="horizontal" @select="selectNavBar()">
         <el-menu-item index="1" @click="$router.push('/')">{{$t("common.home")}}</el-menu-item>
         <el-menu-item index="2">{{$t("common.doc")}}</el-menu-item>
         <el-menu-item index="3">{{$t("common.msgCenter")}}</el-menu-item>
@@ -33,16 +33,17 @@
 
 <script>
 import mock from "@/mock/index.js";
+import Hamburger from "@/components/Hamburger"
 import ThemePicker from "@/components/ThemePicker"
 import LangSelector from "@/components/LangSelector"
 export default {
   components:{
+        Hamburger,
         ThemePicker,
         LangSelector
   },
   data() {
     return {
-      isCollapse: false,
       username: "Alan001",
       userAvatar: "",
       activeIndex: '1'
@@ -52,17 +53,9 @@ export default {
     selectNavBar(key, keyPath) {
       console.log(key, keyPath)
     },
-    // 语言切换
-    handleCommand(command) {
-      let array = command.split(':')
-      let lang = array[0] === '' ? 'zh_cn' : array[0]
-      let label = array[1]
-      document.getElementById("language").innerHTML = label
-      this.$i18n.locale = lang
-    },
     //折叠导航栏
     collapse: function() {
-      this.isCollapse = !this.isCollapse;
+      this.$store.commit('collapse');
     },
     //退出登录
     logout: function() {
@@ -79,7 +72,7 @@ export default {
     }
   },
   mounted() {
-    this.sysName = "I like Kitty";
+    this.sysName = "* * 科技";
     var user = sessionStorage.getItem("user");
     if (user) {
       this.userName = user;
@@ -96,17 +89,17 @@ export default {
   right: 0px;
   height: 60px;
   line-height: 60px;
-  .collapse-switcher {
+  background: #545c64;
+  .hamburger-container {
     width: 40px;
     float: left;
-    cursor: pointer;
-    border-color: rgba(111, 123, 131, 0.8);
+    border-color: rgba(80, 124, 133, 0.747);
     border-left-width: 1px;
     border-left-style: solid;
     border-right-width: 1px;
     border-right-style: solid;
     color: white;
-    background: #504e6180;
+    background: #545c64;
   }
   .nav-bar {
     margin-left: auto;
@@ -140,5 +133,11 @@ export default {
       }
     }
   }
+}
+.menu-bar-width {
+  left: 200px;
+}
+.menu-bar-collapse-width {
+  left: 65px;
 }
 </style>

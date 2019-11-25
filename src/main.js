@@ -7,6 +7,7 @@ import App from './App'
 import router from './router'
 import api from './http/index'
 import i18n from './i18n'
+import store from './store'
 
 Vue.use(ElementUI)
 Vue.use(api)
@@ -18,6 +19,7 @@ new Vue({
   el: '#app',
   router,
   i18n,
+  store,
   components: { App },
   template: '<App/>'
 })

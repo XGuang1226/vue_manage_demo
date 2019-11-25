@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :class="$store.state.collapse?'menu-bar-collapse-width':'menu-bar-width'">
     <el-breadcrumb separator="/" class="breadcrumb">
       <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
         <a href="www.baidu.com">{{ item.name }}</a>
@@ -38,7 +38,13 @@ export default {
     border-color: rgba(38, 86, 114, 0.2);
     border-bottom-width: 1px;
     border-bottom-style: solid;
-    background: rgba(138, 158, 170, 0.2);
+    // background: rgba(180, 189, 196, 0.1);
   }
+}
+.menu-bar-width {
+  left: 200px;
+}
+.menu-bar-collapse-width {
+  left: 65px;
 }
 </style>
