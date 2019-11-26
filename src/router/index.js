@@ -60,13 +60,20 @@ router.beforeEach((to, from, next) => {
 * 加载动态菜单和路由
 */
 function addDynamicMenuAndRoutes() {
+  if(store.state.app.menuRouteLoaded) {
+    console.log('动态菜单和路由已经存在.')
+    return
+  }
   api.menu.findMenuTree()
   .then( (res) => {
-    store.commit('setMenuTree', res.data)
     // 添加动态路由
     let dynamicRoutes = addDynamicRoutes(res.data)
     router.options.routes[0].children = router.options.routes[0].children.concat(dynamicRoutes)
     router.addRoutes(router.options.routes);
+    // 保存加载状态
+    store.commit('menuRouteLoaded', true)
+    // 保存菜单树
+    store.commit('setMenuTree', res.data)
   })
   .catch(function(res) {
     alert(res);
@@ -118,7 +125,9 @@ function addDynamicRoutes (menuList = [], routes = []) {
  if (temp.length >= 1) {
    addDynamicRoutes(temp, routes)
  } else {
+   console.log('动态路由加载...')
    console.log(routes)
+   console.log('动态路由加载完成.')
  }
  return routes
 }
