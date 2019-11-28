@@ -55,7 +55,13 @@ router.beforeEach((to, from, next) => {
     }
   }
 })
-
+/**
+* 在动态添加路由时，清空一下之前的路由
+*/
+router.selfaddRoutes = function (params){
+  router.matcher = new Router().matcher;
+  router.addRoutes(params)
+}
 /**
 * 加载动态菜单和路由
 */
@@ -69,7 +75,7 @@ function addDynamicMenuAndRoutes() {
     // 添加动态路由
     let dynamicRoutes = addDynamicRoutes(res.data)
     router.options.routes[0].children = router.options.routes[0].children.concat(dynamicRoutes)
-    router.addRoutes(router.options.routes);
+    router.selfaddRoutes(router.options.routes);
     // 保存加载状态
     store.commit('menuRouteLoaded', true)
     // 保存菜单树

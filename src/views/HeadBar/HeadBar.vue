@@ -20,7 +20,7 @@
       <lang-selector class="lang-selector"></lang-selector>   
       <!-- 用户信息 -->
       <el-dropdown class="user-info-dropdown" trigger="hover">
-        <span class="el-dropdown-link"><img :src="this.userAvatar" /> {{username}}</span>
+        <span class="el-dropdown-link"><img :src="this.userAvatar" /> {{userName}}</span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>{{$t("common.myMsg")}}</el-dropdown-item>
           <el-dropdown-item>{{$t("common.config")}}</el-dropdown-item>
@@ -45,7 +45,7 @@ export default {
   },
   data() {
     return {
-      username: "Alan 001",
+      userName: "Louis",
       userAvatar: "",
       activeIndex: '1'
     }
@@ -70,12 +70,16 @@ export default {
       .then(() => {
         sessionStorage.removeItem("user")
         this.$router.push("/login")
+        this.$api.login.logout().then((res) => {
+          }).catch(function(res) {
+            alert(res);
+          });
       })
       .catch(() => {})
     }
   },
   mounted() {
-    this.sysName = "* * 科技"
+    this.sysName = "I like Kitty"
     var user = sessionStorage.getItem("user")
     if (user) {
       this.userName = user
@@ -101,6 +105,7 @@ export default {
   .hamburger-container {
     width: 40px;
     float: left;
+    text-align: center;
     border-color: rgba(238, 241, 241, 0.747);
     border-left-width: 1px;
     border-left-style: solid;
@@ -112,7 +117,7 @@ export default {
     margin-left: auto;
     float: left;
     .el-menu {
-      background: #504e6180;
+      background: #0a463480;
     }
   }
   .tool-bar {

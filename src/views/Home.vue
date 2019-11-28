@@ -1,9 +1,9 @@
 <template>
   <div class="container">
       <!-- 导航菜单栏 -->
-      <MenuBar></MenuBar>
+      <menu-bar></menu-bar>
       <!-- 头部区域 -->
-      <HeadBar></HeadBar>
+      <head-bar></head-bar>
       <!-- 主内容区域 -->
       <Main></Main>
   </div>
@@ -28,6 +28,7 @@ export default {
     top: 0px;
     left: 0px;
     right: 0px;
-    background: #4b5f6e;
+    bottom: 0px;
+    // background: rgba(224, 234, 235, 0.1);
   }
 </style>
